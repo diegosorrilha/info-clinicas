@@ -2,6 +2,8 @@
 
 Sistema para gestão de clínicas
 
+Aplicação disponível em https://info-clinicas-dev.herokuapp.com
+
 ## Setup
 
 Crie um virtualenv para o projeto e ative:
@@ -14,10 +16,37 @@ Como o virtualenv ativado, instale as dependências
 pip3 install --upgrade pip && pip3 install -r requirements-dev.txt
 ```
 
-## Rodando
+## Rodando - Desenvolvimento
 
 ```bash
 python3 manage.py runserver
 ```
 
 Acesse em: [http://localhost:8000](http://localhost:8000)
+
+## Deploy
+
+### Ambiente de DESENVOLVIMENTO
+
+Deploy configurado para fazer automaticamente, conforme alterações na branch `dev`
+
+Para fazer de forma manual rodar:
+```bash
+git push dev master
+```
+
+#### Disponível em
+[https://info-clinicas-dev.herokuapp.com](https://info-clinicas-dev.herokuapp.com)
+
+
+### Ambiente de PRODUÇÃO
+
+Deploy configurado para fazer automaticamente, conforme alterações na branch `master`
+
+Para fazer de forma manual rodar:
+```bash
+git push prod master
+```
+
+#### Disponível em
+[https://info-clinicas.herokuapp.com/](https://info-clinicas.herokuapp.com/)
