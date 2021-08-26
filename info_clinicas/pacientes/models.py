@@ -2,6 +2,18 @@ from django.db import models
 
 class Paciente(models.Model):
     
+    SEXO_ESCOLHA = [
+        ("MASCULINO", "masculino"),
+        ("FEMININO", "feminino"),
+    ]
+    
+    sexo = models.CharField(
+        verbose_name="Sexo",
+        max_length=9,
+        choices=SEXO_ESCOLHA,
+        default=None,
+    )
+
     nome_completo = models.CharField(
         verbose_name="Nome completo",
         max_length=194
