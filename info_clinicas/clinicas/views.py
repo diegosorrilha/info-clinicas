@@ -1,6 +1,6 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def cadastrar_clinica(request):
 
-    return HttpResponse('<h1>Cadastrar Clínica</h1>')
+    return render(request, 'cadastrar-clinica.html')
