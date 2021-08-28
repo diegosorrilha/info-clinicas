@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from especialidade.models import Especialidade
+# from django.http import HttpResponse
 
 
-context = {
-        "nome_pagina": "Cadastro de Especialidades",
-}
+def cadastrar_especialidade(request):
 
-return render("especialidade.html", context)
+    # return HttpResponse('<h1>Cadastrar Especialidades</h1>')
+    return render(request, 'especialidade.html')

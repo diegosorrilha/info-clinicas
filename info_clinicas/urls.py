@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from especialidade.views import cadastrar_especialidade
 from info_clinicas.core.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
+    path('cadastrar-especialidade', cadastrar_especialidade,
+         name='cadastrar_especialidade'),
 ]
