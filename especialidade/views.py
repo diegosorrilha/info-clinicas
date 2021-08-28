@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from especialidade.models import Especialidade
 
-# Create your views here.
+
+context = {
+        "nome_pagina": "Cadastro de Especialidades",
+}
+
+return render("especialidade.html", context)

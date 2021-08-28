@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+
+class Especialidade(models.Model):
+
+    Nome_especialidade = models.CharField(
+        verbose_name="Especialidade",
+        max_length=194,
+    )
