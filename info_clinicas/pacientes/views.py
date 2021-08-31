@@ -27,6 +27,4 @@ def cadastrar_paciente(request):
 
         return redirect("cadastrar_paciente")
 
-    context = {}
-    
-    return render(request, 'cadastrar_paciente.html', context)
+    return render(request, 'cadastrar_paciente.html')
