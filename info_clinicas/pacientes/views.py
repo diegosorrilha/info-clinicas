@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from info_clinicas.pacientes.models import Paciente
 
 def cadastrar_paciente(request):
@@ -11,7 +11,7 @@ def cadastrar_paciente(request):
         estado = request.POST['estado'] 
         sexo = request.POST['sexo'] 
         datanascimento = request.POST['data-nascimento']
-
+        
         paciente = Paciente(
             nome_completo=n_c.lower(),
             telefone=tel,
@@ -24,6 +24,8 @@ def cadastrar_paciente(request):
         )
 
         paciente.save()
+
+        return redirect("cadastrar_paciente")
 
     context = {}
     
