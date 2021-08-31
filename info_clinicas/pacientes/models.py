@@ -5,6 +5,7 @@ class Paciente(models.Model):
     SEXO_ESCOLHA = [
         ("M", "masculino"),
         ("F", "feminino"),
+        ("O", "outro"),
     ]
     
     sexo = models.CharField(
