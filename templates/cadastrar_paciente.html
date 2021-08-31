@@ -18,59 +18,58 @@
 				</div>
 				<div class="x_content">
 					<br />
-					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action=''>
+						{% csrf_token %}
 						<div class="item form-group">
 							<label class="col-form-label col-md-3 col-sm-3 label-align" for="nome_completo">Nome Completo<span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 ">
-								<input type="text" id="nome_completo" required="required" class="form-control ">
+								<input name="nome-completo" type="text" id="nome-completo" required="required" class="form-control ">
 							</div>
 						</div>
 						<div class="item form-group">
 							<label class="col-form-label col-md-3 col-sm-3 label-align" for="telefone">Telefone<span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 ">
-								
-								<input type="text" id="telefone" name="telefone" required="required" class="form-control">
+								<input name="telefone" type="number" id="telefone" required="required" class="form-control">
 							</div>
 						</div>
 						<div class="item form-group">
 							<label for="email" class="col-form-label col-md-3 col-sm-3 label-align">E-mail</label>
 							<div class="col-md-6 col-sm-6 ">
-								<input id="email" class="form-control" type="text" name="email">
+								<input name="email" id="email" class="form-control" type="email" class="email">
 							</div>
 						</div>
 						<div class="item form-group">
 							<label for="endereço" class="col-form-label col-md-3 col-sm-3 label-align">Endereço<span class="required">*</span>
 							</label>	
 							<div class="col-md-6 col-sm-6 ">
-								<input id="endereço" class="form-control" type="text" name="endereço" required="required" placeholder="(rua, número e bairro)">
+								<input name="endereço" id="endereço" class="form-control" type="text" required="required" placeholder="(rua, número, bairro) ex. Rua ABC, 123, Jardim DEF">
 							</div>
 						</div>
 						<div class="item form-group">
 							<label for="cidade" class="col-form-label col-md-3 col-sm-3 label-align">Cidade<span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 ">
-								<input id="cidade" class="form-control" type="text" name="cidade" required="required">
+								<input name="cidade" id="cidade" class="form-control" type="text" required="required">
 							</div>
 						</div>
 						<div class="item form-group">
 							<label for="estado" class="col-form-label col-md-3 col-sm-3 label-align">Estado<span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 ">
-								<input id="estado" class="form-control" type="text" name="estado" required="required">
+								<input name="estado" id="estado" class="form-control" type="text" required="required">
 							</div>
 						</div>
 						<div class="item form-group">
 							<label class="col-form-label col-md-3 col-sm-3 label-align">Sexo</label>
 							<div class="col-md-6 col-sm-6 ">
-								<div id="gender" class="btn-group" data-toggle="buttons">
+								<div id="sexo" class="btn-group" data-toggle="buttons">
 									<label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-										<input type="radio" name="gender" value="masculino" class="join-btn"> &nbsp; Masculino &nbsp;
+										<input name="sexo" type="radio" value="masculino" class="join-btn"> &nbsp; Masculino &nbsp;
 									</label>
 									<label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-										<input type="radio" name="gender" value="feminino" class="join-btn"> Feminino
+										<input name="sexo" type="radio" value="feminino" class="join-btn"> Feminino
 									</label>
 								</div>
 							</div>
@@ -79,7 +78,7 @@
 							<label class="col-form-label col-md-3 col-sm-3 label-align">Data de nascimento<span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 ">
-								<input id="birthday" class="date-picker form-control" placeholder="dd-mm-aaaa" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+								<input name="data-nascimento" id="data-nascimento" class="date-picker form-control" placeholder="dd-mm-aaaa" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
 								<script>
 									function timeFunctionLong(input) {
 										setTimeout(function() {
