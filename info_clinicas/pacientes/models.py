@@ -3,8 +3,8 @@ from django.db import models
 class Paciente(models.Model):
     
     SEXO_ESCOLHA = [
-        ("MASCULINO", "masculino"),
-        ("FEMININO", "feminino"),
+        ("M", "masculino"),
+        ("F", "feminino"),
     ]
     
     sexo = models.CharField(
