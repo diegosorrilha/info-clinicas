@@ -18,9 +18,11 @@ from django.urls import path
 from info_clinicas.medicos.views import index
 
 from info_clinicas.core.views import home
+from info_clinicas.pacientes.views import cadastrar_paciente
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('administracao/medicos/', index, name="medicos"),
+    path('cadastrar-paciente/', cadastrar_paciente, name='cadastrar_paciente')
 ]
