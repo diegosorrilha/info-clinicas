@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from info_clinicas.clinicas.models import Clinica
 
 
 def cadastrar_clinica(request):
@@ -12,6 +14,19 @@ def cadastrar_clinica(request):
         telefone = request.POST['telefone']
         responsavel = request.POST['responsavel']
 
-        print(nome, cnpj, site, endereco, cidade, estado, telefone, responsavel)
+        clinica = Clinica(
+            nome=nome,
+            cnpj=cnpj,
+            site=site,
+            endereco=endereco,
+            cidade=cidade,
+            estado=estado,
+            telefone=telefone,
+            responsavel=responsavel,
+        )
+
+        clinica.save()
+
+        return redirect("cadastrar_clinica")
 
     return render(request, 'cadastrar-clinica.html')
