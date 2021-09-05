@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'info_clinicas.core',
+]
+
+INSTALLED_APPS += [
+    'info_clinicas.pacientes',
     'info_clinicas.clinicas'
 ]
 

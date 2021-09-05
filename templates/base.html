@@ -10,7 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Info Clínica | </title>
+	<title>Info Clínicas | </title>
 
 	<!-- Bootstrap -->
 	<link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -41,7 +41,7 @@
 			<div class="col-md-3 left_col">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="index.html" class="site_title"><i class="fa fa-plus-square"></i> <span> Info Clínica</span></a>
+						<a href="index.html" class="site_title"><i class="fa fa-plus-square"></i> <span> Info Clínicas</span></a>
 					</div>
 
 					<div class="clearfix"></div>
@@ -67,6 +67,8 @@
 							<ul class="nav side-menu">
 								<li><a href="index.html"><i class="fa fa-home"></i> Início</a></li>
 								<li><a href="{% url 'cadastrar_clinica' %}"><i class="fa fa-plus-square"></i> Cadastrar Clínica</a></li>
+								<li><a href="{% url 'cadastrar_paciente' %}"><i class="fa fa-users"></i> Cadastrar Paciente</a></li>
+
 								<li><a><i class="fa fa-laptop"></i> Exemplo A <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a href="index.html">Exemplo A1</a></li>
@@ -184,6 +186,8 @@
 	<script src="{% static 'vendors/starrr/dist/starrr.js' %}"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="{% static '/build/js/custom.min.js' %}"></script>
+	<!-- jQuery InputMask -->
+    <script src="{% static '/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js' %}"></script>
 
 </body></html>
 
