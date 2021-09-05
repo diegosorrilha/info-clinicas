@@ -1,80 +1,102 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
+	<div class="page-title">
+		<div class="title_left">
+			<h3>Cadastro de Clínica</h3>
+		</div>
 
-<form class="form-horizontal form-label-left">
-      <div class="form-group row">
-        <label class="control-label col-md-2 col-sm-2 col-xs-2">Nome da Clínica</label>
-        <div class="col-md-9 col-sm-9 col-xs-9">
-          <input type="text" class="form-control" data-inputmask="'mask' : '(999) 999-9999'">
-          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-        </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="control-label col-md-2 col-sm-2 col-xs-2">CNPJ</label>
-        <div class="col-md-9 col-sm-9 col-xs-9">
-          <input type="text" class="form-control" data-inputmask="'mask': '99-999999'">
-          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-        </div>
-      </div>
+	<div class="clearfix"></div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12 ">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2><small>O asterísco (*) sinaliza que o campo é obrigatório </small></h2>
 
-      <div class="form-group row">
-        <label class="control-label col-md-2 col-sm-2 col-xs-2">Site</label>
-        <div class="col-md-9 col-sm-9 col-xs-9">
-          <input type="text" class="form-control" data-inputmask="'mask' : '****-****-****-****-****-***'">
-          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-        </div>
-      </div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+					<br />
+					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action=''>
+						{% csrf_token %}
+						<div class="item form-group">
+							<label class="col-form-label col-md-3 col-sm-3 label-align" for="nome_clinica">Nome da Clínica<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input name="nome_clinica" type="text" id="nome_clinica" required="required" class="form-control" data-parsley-error-message="Por favor, preencha este campo.">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="col-form-label col-md-3 col-sm-3 label-align" for="cpnj">CNPJ<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input name="cpnj" type="text" id="cpnj" required="required" class="form-control" data-inputmask="'mask' : 99.999.999/9999-99" maxlength="16" data-parsley-error-message="Insira um CNPJ válido.">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label for="site" class="col-form-label col-md-3 col-sm-3 label-align">Site</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input name="site" id="site" class="form-control" type="url" class="url" data-parsley-error-message="Insira um site válido.">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label for="email" class="col-form-label col-md-3 col-sm-3 label-align">E-mail</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input name="email" id="email" class="form-control" type="email" class="email" data-parsley-error-message="Insira um e-mail válido.">
+							</div>
+						</div>
 
-      <div class="form-group row">
-        <label class="control-label col-md-2 col-sm-2 col-xs-2">Endereço</label>
-        <div class="col-md-9 col-sm-9 col-xs-9">
-          <input type="text" class="form-control" data-inputmask="'mask' : '99-99999999'">
-          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-        </div>
-      </div>
+						<div class="item form-group">
+							<label for="endereco" class="col-form-label col-md-3 col-sm-3 label-align">Endereço<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input name="endereco" id="endereco" class="form-control" type="text" required="required" placeholder="(rua, número, bairro) ex. Rua ABC, 123, Jardim DEF" data-parsley-error-message="Por favor, preencha este campo.">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label for="cidade" class="col-form-label col-md-3 col-sm-3 label-align">Cidade<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input name="cidade" id="cidade" class="form-control" type="text" required="required" data-parsley-error-message="Por favor, preencha este campo.">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label for="estado" class="col-form-label col-md-3 col-sm-3 label-align">Estado<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input name="estado" id="estado" class="form-control" type="text" required="required" data-parsley-error-message="Por favor, preencha este campo.">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="col-form-label col-md-3 col-sm-3 label-align" for="telefone">Telefone<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input name="telefone" type="text" id="telefone" required="required" class="form-control" data-inputmask="'mask' : ['(99) 9999-9999', '(99) 99999-9999']" data-parsley-minlength="13" maxlength="16" data-parsley-error-message="Insira um telefone válido.">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label for="responsavel" class="col-form-label col-md-3 col-sm-3 label-align">Responsável<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 ">
+								<input name="responsavel" id="responsavel" class="form-control" type="text" required="required" data-parsley-error-message="Por favor, preencha este campo.">
+							</div>
+						</div>
 
-      <div class="form-group row">
-        <label class="control-label col-md-2 col-sm-2 col-xs-2">Cidade</label>
-        <div class="col-md-9 col-sm-9 col-xs-9">
-          <input type="text" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
-          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-        </div>
-      </div>
 
-      <div class="form-group row">
-        <label class="control-label col-md-2 col-sm-2 col-xs-2">Estado</label>
-        <div class="col-md-9 col-sm-9 col-xs-9">
-          <input type="text" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
-          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="control-label col-md-2 col-sm-2 col-xs-2">Telefone</label>
-        <div class="col-md-9 col-sm-9 col-xs-9">
-          <input type="text" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
-          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="control-label col-md-2 col-sm-2 col-xs-2">Responsável</label>
-        <div class="col-md-9 col-sm-9 col-xs-9">
-          <input type="text" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
-          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-        </div>
-      </div>
-
-      <div class="ln_solid"></div>
-
-      <div class="form-group row">
-        <div class="col-md-9 offset-md-3">
-          <button type="submit" class="btn btn-primary">Cancel</button>
-          <button type="submit" class="btn btn-success">Submit</button>
-        </div>
-      </div>
-</form>
-
+						<div class="ln_solid"></div>
+						<div class="item form-group">
+							<div class="col-md-6 col-sm-6 offset-md-3">
+								<a href="#" class="btn btn-danger" type="button">Cancelar</a>
+								<button class="btn btn-primary" type="reset">Limpar campos</button>
+								<button type="submit" class="btn btn-success pull-right">Cadastrar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock conteudo %}
+
