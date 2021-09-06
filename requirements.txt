@@ -3,3 +3,4 @@ dj-database-url==0.5.0
 dj-static==0.0.6
 gunicorn
 python-decouple==3.4
+psycopg2-binary
