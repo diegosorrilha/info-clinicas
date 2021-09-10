@@ -48,7 +48,8 @@ INSTALLED_APPS += [
     'info_clinicas.core',
     'info_clinicas.medicos',
     'info_clinicas.pacientes',
-    'info_clinicas.clinicas'
+    'info_clinicas.clinicas',
+
 ]
 
 MIDDLEWARE = [
