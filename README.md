@@ -1,6 +1,6 @@
 # Info Clinicas
 
-Sistema para gestão de clínicas
+Sistema para Gestão de Clínicas
 
 Aplicação disponível em https://info-clinicas-dev.herokuapp.com
 
