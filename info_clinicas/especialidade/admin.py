@@ -1,3 +1,4 @@
 from django.contrib import admin
+from info_clinicas.especialidade.models import Especialidade
 
-# Register your models here.
+admin.site.register(Especialidade)

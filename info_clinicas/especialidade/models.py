@@ -3,13 +3,13 @@ from django.db import models
 
 class Especialidade(models.Model):
 
-    Nome_especialidade = models.CharField(
+    nome_especialidade = models.CharField(
         verbose_name="Especialidade",
         max_length=194,
-    ),
+    )
 
-    Data_inclusao = models.DateField(
+    data_inclusao = models.DateTimeField(
         verbose_name='Data Inclusao',
         auto_now_add=False,
-        auto_now=False,
+        auto_now=True,
     )
