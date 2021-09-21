@@ -4013,7 +4013,7 @@ a.hiddenanchor {
   max-width: 350px;
   position: relative; }
 
-.registration_form, .login_form {
+.registration_form, .login_form .reset_form {
   position: absolute;
   top: 0px;
   width: 100%; }
@@ -4026,14 +4026,17 @@ a.hiddenanchor {
 .login_form {
   z-index: 22; }
 
-#signup:target ~ .login_wrapper .registration_form, #signin:target ~ .login_wrapper .login_form {
+.reset_form {
+  z-index: 22; }
+
+#signup:target ~ .login_wrapper .registration_form, #signin:target ~ .login_wrapper .login_form, #resetpassword: target ~ .login_wrapper .reset_form {
   z-index: 22;
   -webkit-animation-name: fadeInLeft;
   animation-name: fadeInLeft;
   -webkit-animation-delay: .1s;
   animation-delay: .1s; }
 
-#signup:target ~ .login_wrapper .login_form, #signin:target ~ .login_wrapper .registration_form {
+#signup:target ~ .login_wrapper .login_form, #signin:target ~ .login_wrapper .registration_form, #resetpassword: target ~ .login_wrapper .reset_form {
   -webkit-animation-name: fadeOutLeft;
   animation-name: fadeOutLeft; }
 
