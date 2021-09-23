@@ -1,14 +1,21 @@
-
+from django.shortcuts import render, redirect
 from info_clinicas.especialidade.models import Especialidade
-from django.shortcuts import render
 
 
 def cadastrar_especialidade(request):
 
     if request.method == "POST":
-        nomeespecialidade = request.POST['nome_especialidade']
-        datainclusao = request.POST['data_inclusao']
+        nomeespecialidade = request.POST['nome-especialidade']
+        datainclusao = request.POST['data-inclusao']
 
-        print(nomeespecialidade, datainclusao)
+        inclu = Especialidade(
+            nome_especialidade=nomeespecialidade.lower(),
+            data_inclusao=datainclusao,
+
+        )
+
+        inclu.save()
+
+        return redirect("cadastrar_especialidade")
 
     return render(request, 'especialidade.html')
