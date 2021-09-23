@@ -42,10 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'info_clinicas.core',
-    'info_clinicas.especialidade',
-
 ]
 
 INSTALLED_APPS += [
@@ -53,6 +49,7 @@ INSTALLED_APPS += [
     'info_clinicas.medicos',
     'info_clinicas.pacientes',
     'info_clinicas.clinicas',
+    'info_clinicas.especialidade',
 
 
 ]
