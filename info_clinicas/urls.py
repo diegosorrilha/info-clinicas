@@ -16,16 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from info_clinicas.especialidade.views import cadastrar_especialidade
 from info_clinicas.core.views import home
+from info_clinicas.core.views import home, login
 from info_clinicas.clinicas.views import cadastrar_clinica
 from info_clinicas.pacientes.views import cadastrar_paciente
 from info_clinicas.medicos.views import cadastrar_medico
 from info_clinicas.agendamento.views import agendar_consulta
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', login, name='login'),
     path('', home, name='home'),
+
+    path('cadastrar-especialidade', cadastrar_especialidade,
+         name='cadastrar_especialidade'),
+
     path('cadastrar-clinica', cadastrar_clinica, name='cadastrar_clinica'),
     path('cadastrar-paciente/', cadastrar_paciente, name='cadastrar_paciente'),
     path('cadastrar-medico/', cadastrar_medico, name="cadastrar_medicos"),

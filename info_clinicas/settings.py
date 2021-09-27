@@ -50,6 +50,7 @@ INSTALLED_APPS += [
     'info_clinicas.pacientes',
     'info_clinicas.clinicas',
     'info_clinicas.agendamento',
+    'info_clinicas.especialidade',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +133,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS =[
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
