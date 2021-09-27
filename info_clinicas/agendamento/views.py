@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def agendar_consulta(request):
+
+    return render(request, 'agendar_consulta.html')
