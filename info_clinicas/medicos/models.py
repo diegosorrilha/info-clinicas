@@ -23,13 +23,6 @@ class Medicos(models.Model):
     CEP = models.CharField(verbose_name="CEP", max_length=9)
     CRM = models.CharField(verbose_name="CRM", max_length=7)
     
-class Disponibilidade(models.Model):
-    
-    disponivel = models.BooleanField(default=True)
-    medico = models.ForeignKey("medicos.Medicos", on_delete=models.PROTECT)
-    data = models.DateField(verbose_name="Data disponível", auto_now=False, auto_now_add=False)
-    hora = models.DateTimeField(verbose_name="Horário disponível", auto_now=False, auto_now_add=False)
-
     class Meta:
         verbose_name = "Médico"
         verbose_name_plural = "Médicos"
@@ -37,6 +30,21 @@ class Disponibilidade(models.Model):
 
     def __str__(self):
         return self.nome_completo
+
+class Disponibilidade(models.Model):
+    
+    disponivel = models.BooleanField(default=True)
+    medico = models.ForeignKey("medicos.Medicos", on_delete=models.PROTECT)
+    data = models.DateField(verbose_name="Data disponível", auto_now=False, auto_now_add=False)
+    hora = models.TimeField(verbose_name="Horário disponível", auto_now=False, auto_now_add=False)
+
+    class Meta:
+        verbose_name = "Disponibilidade"
+        verbose_name_plural = "Disponibilidades"
+        db_table = "disponibilidade"
+
+    def __str__(self):
+        return self.disponivel
 
 
 
