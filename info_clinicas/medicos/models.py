@@ -34,7 +34,7 @@ class Medicos(models.Model):
 class Disponibilidade(models.Model):
     
     disponivel = models.BooleanField(default=True)
-    medico = models.ForeignKey("medicos.Medicos", on_delete=models.PROTECT)
+    medico = models.ForeignKey(Medicos, on_delete=models.PROTECT)
     data = models.DateField(verbose_name="Data disponível", auto_now=False, auto_now_add=False)
     hora = models.TimeField(verbose_name="Horário disponível", auto_now=False, auto_now_add=False)
 
@@ -43,8 +43,6 @@ class Disponibilidade(models.Model):
         verbose_name_plural = "Disponibilidades"
         db_table = "disponibilidade"
 
-    def __str__(self):
-        return self.disponivel
 
 
 
