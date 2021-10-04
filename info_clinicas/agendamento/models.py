@@ -34,3 +34,24 @@ class Agendamento(models.Model):
         verbose_name = "Agendamento"
         verbose_name_plural = "Agendamentos"
         db_table = "agendamento"
+    
+    def get_hora(self):
+        if self.agendado_para.hora:
+            hora = str(self.agendado_para.hora)
+            only_hora = hora[0:2]
+
+            return only_hora
+    
+    def get_minutos(self):
+        if self.agendado_para.hora:
+            minuto = str(self.agendado_para.hora)
+            only_minuto = minuto[3:5]
+
+            if only_minuto == '01':
+                return (f"e {only_minuto} minuto")
+        
+            elif only_minuto == '00':
+                return ""
+            
+            else:
+                return (f"e {only_minuto} minutos")
