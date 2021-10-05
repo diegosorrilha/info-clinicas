@@ -1,5 +1,8 @@
 from django.db import models
 
+from info_clinicas.clinicas.models import Clinica
+
+
 class Paciente(models.Model):
     
     SEXO_ESCOLHA = [
@@ -52,6 +55,8 @@ class Paciente(models.Model):
         blank=True,
         null=True,
     )
+
+    clinica = models.ForeignKey(Clinica, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         verbose_name = "Paciente"
