@@ -15,12 +15,17 @@ def agendar_consulta(request):
 
     if request.method == 'POST':
         
-        disponibilidade = Disponibilidade.objects.get(id=request.POST['disp_id'])
+        disponibilidade_id = request.POST['disp_id']
+        if disponibilidade_id == 'default':
+            disponibilidade = None
+        else:
+            disponibilidade = Disponibilidade.objects.get(id=request.POST['disp_id'])
         
         paciente_id = request.POST['paciente_id']
-        print(type(paciente_id))
+        
         if paciente_id == 'default':
             paciente = None
+        
         else:
             paciente = Paciente.objects.get(id=request.POST['paciente_id'])
         
@@ -28,7 +33,6 @@ def agendar_consulta(request):
             agendamento = Agendamento(agendado_para=disponibilidade, medico=disponibilidade.medico, paciente=paciente)
             agendamento.save()
             
-            print(especialidade)
         else:
             error = 'Agendamento não efetuado, tente novamente'
 
