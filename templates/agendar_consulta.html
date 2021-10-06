@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+	<div class="page-title">
+		<div class="title_left">
+			<h3>Formulário de agendamento de consultas</h3>
+		</div>
+
+		
+	<div class="clearfix"></div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12 ">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2><small>O asterísco (*) sinaliza que o campo é obrigatório </small></h2>
+					
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+					{% if error %}
+					<div class="alert alert-danger" role="alert">
+						{{ error }}
+					  </div>
+					{% endif %}
+					<br />
+					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action=''>
+						{% csrf_token %}
+						<div class="form-group row">
+							<label class="col-form-label col-md-3 col-sm-3  label-align" >Disponibilidades<span class='required'>*</span>
+							</label>
+							<div class="col-md-6 col-sm-6">
+								<select name='disp_id' class="form-control">
+									<option value='default'>------</option>
+									{% for disponibilidade in disponibilidades %}
+									<option value={{disponibilidade.id}}>{{ disponibilidade.medico.nome_completo }} {{ disponibilidade.hora }} {{ disponibilidade.data }} {{ especialidade }} </option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-form-label col-md-3 col-sm-3  label-align" >Paciente<span class='required'>*</span>
+							</label>
+							<div class="col-md-6 col-sm-6">
+								<select name='paciente_id' class="form-control">
+									<option value='default'>------</option>
+									{% for paciente in pacientes %}
+									<option value={{paciente.id}}>{{ paciente.nome_completo }} </option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="ln_solid"></div>
+						<div class="item form-group">
+							<div class="col-md-6 col-sm-6 offset-md-3">
+								<a href="#" class="btn btn-danger" type="button">Cancelar</a>
+								<button type="submit" class="btn btn-success pull-right">Agendar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+
+		<div class="col-md-12 col-sm-12  ">
+		  <div class="x_panel">
+			<div class="x_title">
+			  <h2>Últimos agendamentos </h2>
+			  
+			  <div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+			  <table class="table table-hover">
+				<thead>
+				  <tr>
+					<th>Paciente</th>
+					<th>Médico</th>
+					<th>Data e Hora</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  {% for agendamento in agendamentos %}
+				   <tr>
+					<td>{{ agendamento.paciente.nome_completo }}</td>
+					<td>{{ agendamento.medico.nome_completo }}</td>
+					<td>{{ agendamento.agendado_para.data}}, às {{ agendamento.get_hora }} horas {{ agendamento.get_minutos }}</td>
+				  </tr>
+				  {% endfor %}
+				</tbody>
+			  </table>
+
+			</div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+{% endblock conteudo %}
