@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from info_clinicas.medicos.models import Medicos
+from info_clinicas.pacientes.models import Paciente
 
 def cadastrar_medico(request):
     if request.method == 'POST':
@@ -34,3 +35,6 @@ def cadastrar_medico(request):
         return redirect("cadastrar_medico")
 
     return render(request, 'cadastrar_medico.html')
+
+def index_medico(request):
+    return render(request, 'medico_index.html')
