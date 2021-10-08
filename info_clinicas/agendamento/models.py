@@ -1,5 +1,7 @@
 from django.db import models
 
+from info_clinicas.clinicas.models import Clinica
+
 class Agendamento(models.Model):
 
     STATUS_AGENDAMENTO = [
@@ -29,6 +31,8 @@ class Agendamento(models.Model):
         "pacientes.Paciente",
         on_delete=models.PROTECT,
     )
+
+    clinica = models.ForeignKey(Clinica, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         verbose_name = "Agendamento"

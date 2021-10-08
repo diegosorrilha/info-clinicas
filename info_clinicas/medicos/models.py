@@ -1,6 +1,7 @@
 from django.db import models
 
-# Create your models here.
+from info_clinicas.clinicas.models import Clinica
+
 
 class Medicos(models.Model):
 
@@ -22,7 +23,8 @@ class Medicos(models.Model):
     pais = models.CharField(verbose_name="País", max_length=12)
     CEP = models.CharField(verbose_name="CEP", max_length=9)
     CRM = models.CharField(verbose_name="CRM", max_length=7)
-    
+    clinica = models.ForeignKey(Clinica, on_delete=models.CASCADE, blank=True, null=True)
+
     class Meta:
         verbose_name = "Médico"
         verbose_name_plural = "Médicos"
@@ -37,6 +39,7 @@ class Disponibilidade(models.Model):
     medico = models.ForeignKey(Medicos, on_delete=models.PROTECT)
     data = models.DateField(verbose_name="Data disponível", auto_now=False, auto_now_add=False)
     hora = models.TimeField(verbose_name="Horário disponível", auto_now=False, auto_now_add=False)
+    clinica = models.ForeignKey(Clinica, on_delete=models.CASCADE, blank=True, null=False)
 
     class Meta:
         verbose_name = "Disponibilidade"
