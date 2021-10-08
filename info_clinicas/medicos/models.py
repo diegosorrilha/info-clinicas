@@ -39,6 +39,7 @@ class Disponibilidade(models.Model):
     medico = models.ForeignKey(Medicos, on_delete=models.PROTECT)
     data = models.DateField(verbose_name="Data disponível", auto_now=False, auto_now_add=False)
     hora = models.TimeField(verbose_name="Horário disponível", auto_now=False, auto_now_add=False)
+    clinica = models.ForeignKey(Clinica, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         verbose_name = "Disponibilidade"
