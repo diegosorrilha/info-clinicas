@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+		<div class="page-title">
+			<div class="title_left">
+				<h3>Especialidades Clínicas </h3>
+			</div>			
+		</div>
+		<div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 ">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Cadastro de novas especialidades<small>Informe a especialidade que deseja adicionar</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>                                   
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+                            {% csrf_token %}
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Especialidade:<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" id="nome-especialidade" name="nome-especialidade" required="required" class="form-control" data-parsley-error-message="Por favor, preencha este campo.">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Data de Inclusão:<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input name="data-inclusao" id="data-inclusao" class="date-picker form-control" placeholder="dd-mm-aaaa" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" data-parsley-error-message="Por favor, preencha este campo.">
+                                        <script>
+                                            function timeFunctionLong(input) {
+                                                setTimeout(function() {
+                                                    input.type = 'text';
+                                                }, 60000);
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+                                <div class="ln_solid"></div>
+                                <div class="item form-group">
+                                    <div class="col-md-6 col-sm-6 offset-md-3">
+                                        <a href="#" class="btn btn-danger" type="button">Cancelar</a>
+                                        <button class="btn btn-primary" type="reset">Limpar campos</button>
+                                        <button type="submit" class="btn btn-success pull-right">Cadastrar</button>
+                                    </div>
+                                </div>
+    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>	<button type="submit" class="btn btn-secondary">Voltar</button>
+
+
+{% endblock conteudo %}
+
+
+
+<!-- /page content -->
+
