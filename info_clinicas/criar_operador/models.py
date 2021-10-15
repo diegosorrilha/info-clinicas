@@ -6,66 +6,66 @@ from django.contrib.auth.models import (
 )
 
 
-class OperadorManager(BaseUserManager):
+class Operador(models.Model):
 
-    def create_user(self, email, password=None):
-        operador = self.model(
-            email=self.normalize_email(email)
-        )
+    nome_completo = models.CharField(
+        verbose_name="Nome completo",
+        max_length=194
+    )
 
-        operador.is_active = True
-        operador.is_staff = False
-        operador.is_superuser = False
+    data_nascimento = models.DateField(
+        verbose_name="Data de nascimento",
+        auto_now=False,
+        auto_now_add=False,
+    )
 
-        if password:
-            operador.set_password(password)
-
-        operador.save()
-
-        return operador
-
-    def create_superuser(self, email, password):
-        operador = self.create_user(
-            email=self.normalize_email(email),
-            password=password
-        )
-        operador.is_active = True
-        operador.is_staff = True
-        operador.is_superuser = True
-
-        operador.set_password(password)
-
-        operador.save()
-
-        return operador
-
-
-class Operador(AbstractBaseUser, PermissionsMixin):
+    telefone = models.CharField(
+        verbose_name="Telefone",
+        max_length=11,
+    )
     email = models.EmailField(
-        verbose_name="E-mail do Operador",
+        verbose_name="E-mail",
         max_length=194,
-        unique=True,
-    )
-    is_active = models.BooleanField(
-        verbose_name="Operador está ativo",
-        default=True,
+        blank=True,
+        null=True,
     )
 
-    is_staff = models.BooleanField(
-        verbose_name="Operador é da equipe de desenvolvimento ",
-        default=False,
+    usuario = models.CharField(
+        verbose_name="Login",
+        max_length=50,
+        blank=False,
+        null=False
     )
 
-    is_superuser = models.BooleanField(
-        verbose_name="Operador é um superusuario",
-        default=False,
+    senha = models.CharField(
+        verbose_name="Senha",
+        max_length=15,
+        blank=False,
+        null=False
     )
 
-    USERNAME_FIELD = 'email'
+    confirme_senha = models.CharField(
+        verbose_name="Confirme a Senha",
+        max_length=15,
+        blank=False,
+        null=False
+    )
 
-    objects = OperadorManager()
+    clinica_id = models.CharField(
+        verbose_name="Id clinica",
+        max_length=10,
+    )
+
+    observacao = models.CharField(
+        verbose_name="Observacao",
+        max_length=200,
+
+    )
 
     class Meta:
         verbose_name = "Operador"
         verbose_name_plural = "Operadores"
         db_table = "operador"
+
+    def __str__(self):
+        return self.nome_completo

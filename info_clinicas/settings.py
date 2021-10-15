@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'info_clinicas.core',
     'info_clinicas.especialidade',
-    'info_clinicas.operador',
+    'info_clinicas.criar_operador',
+
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "operador.Operador"
+# AUTH_USER_MODEL = "criar_operador.Operador"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
