@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-
     	<div class="page-title">
 			<div class="title_left">
 				<h3>Formulário de Cadastro de operador</h3>
@@ -18,42 +17,38 @@
                                 </div>
                                 <div class="x_content">
                                     <form class="" action="" method="post" novalidate>
+                                    {% csrf_token %}
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Nome<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" required="required" />
+                                                <input type="text" id="nome-completo" name="nome-completo" class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" required="required" />
                                             </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Data de Nascimento<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='date' type="date" name="date" required='required'></div>
+                                                <input type="date" name="data-nascimento" id="data-nascimento" class="form-control" class='date' required='required'></div>
                                         </div>
                                           <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Telefone<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'></div>
+                                                <input name="telefone-operador" id="telefone-operador" class="form-control" type="number" class='number' name="number" required='required'></div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">E-mail<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" name="email" class='email' required="required" type="email" /></div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Confirme e-mail<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="email" class='email' name="confirm_email" data-validate-linked='email' required='required' /></div>
+                                                <input class="form-control" name="Email"  id="Email" class='Email' required="required" type="email" /></div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Login<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" required="required" />
+                                                <input class="form-control" name="usuario-operador"  id="usuario-operador" data-validate-length-range="6" data-validate-words="2" name="name" required="required" />
                                             </div>
                                         </div>                                      
                                         <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Senha de acesso<span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6">
-												<input class="form-control" type="password" id="password1" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" title="Minimum 8 Characters Including An Upper And Lower Case Letter, A Number And A Unique Character" required />
+												<input class="form-control" type="password" id="senha-operador" name="senha-operador" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" title="Minimum 8 Characters Including An Upper And Lower Case Letter, A Number And A Unique Character" required />
 												
 												<span style="position: absolute;right:15px;top:7px;" onclick="hideshow()" >
 													<i id="slash" class="fa fa-eye-slash"></i>
@@ -65,18 +60,18 @@
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Confirme a Senha<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="password" name="password2" data-validate-linked='password' required='required' /></div>
+                                                <input class="form-control" type="password" id="confirme-senha" name="confirme-senha" data-validate-linked='password' required='required' /></div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Clínica<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" required="required" />
+                                                <input class="form-control" id="clinica-id" name="clinica-id" data-validate-length-range="6" data-validate-words="2" name="name" required="required" />
                                             </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Observação<span class="required"></span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <textarea required="required" name='message'></textarea></div>
+                                                <textarea required="required" id='obs' name='obs'></textarea></div>
                                         </div>
                                         <div class="ln_solid">
                                             <div class="form-group">

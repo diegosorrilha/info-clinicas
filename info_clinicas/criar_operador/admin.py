@@ -1,3 +1,4 @@
 from django.contrib import admin
+from info_clinicas.criar_operador.models import Operador
 
-# Register your models here.
+admin.site.register(Operador)

@@ -1,9 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import (
-    BaseUserManager,
-    AbstractBaseUser,
-    PermissionsMixin,
-)
 
 
 class Operador(models.Model):
