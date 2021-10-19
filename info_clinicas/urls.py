@@ -22,7 +22,7 @@ from info_clinicas.core.views import home, login
 from info_clinicas.clinicas.views import cadastrar_clinica
 from info_clinicas.pacientes.views import cadastrar_paciente
 from info_clinicas.medicos.views import cadastrar_medico
-from info_clinicas.agendamento.views import agendar_consulta
+from info_clinicas.agendamento.views import agendar_consulta, cancelar_consulta
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,4 +36,5 @@ urlpatterns = [
     path('cadastrar-paciente/', cadastrar_paciente, name='cadastrar_paciente'),
     path('cadastrar-medico/', cadastrar_medico, name="cadastrar_medicos"),
     path('agendar-consulta/', agendar_consulta, name="agendar_consulta"),
+    path('agendamentos/<int:id>/cancelar-consulta/', cancelar_consulta, name="cancelar_consulta")
 ]

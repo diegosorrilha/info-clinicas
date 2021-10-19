@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import (
+    render, get_object_or_404, redirect
+)
+from django.contrib import messages
+
 from info_clinicas.agendamento.models import Agendamento
 from info_clinicas.especialidade.models import Especialidade
 from info_clinicas.medicos.models import Disponibilidade
@@ -45,3 +49,22 @@ def agendar_consulta(request):
     }
     
     return render(request, 'agendar_consulta.html', context)
+
+def cancelar_consulta(request, id):
+
+    
+    agendamento = get_object_or_404(
+        Agendamento,
+        id=id
+    ) 
+
+    agendamento.status = "CANCELADO"
+
+    agendamento.save()
+
+    messages.success(
+        request,
+        "Consulta cancelada com sucesso!"
+    )
+
+    return redirect("agendar_consulta")

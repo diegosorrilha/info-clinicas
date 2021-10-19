@@ -76,19 +76,22 @@
 					<th>Paciente</th>
 					<th>Médico</th>
 					<th>Data e Hora</th>
+					<th>Cancelar consulta</th>
 				  </tr>
 				</thead>
 				<tbody>
-				  {% for agendamento in agendamentos %}
-				   <tr>
-					<td>{{ agendamento.paciente.nome_completo }}</td>
-					<td>{{ agendamento.medico.nome_completo }}</td>
-					<td>{{ agendamento.agendado_para.data}}, às {{ agendamento.get_hora }} horas {{ agendamento.get_minutos }}</td>
-				  </tr>
-				  {% endfor %}
+				{% for agendamento in agendamentos %}
+					{% if agendamento.status == "AGENDADO" %}
+						<tr>
+							<td>{{ agendamento.paciente.nome_completo }}</td>
+							<td>{{ agendamento.medico.nome_completo }}</td>
+							<td>{{ agendamento.agendado_para.data}}, às {{ agendamento.get_hora }} horas {{ agendamento.get_minutos }}</td>
+							<td><a href="{% url 'cancelar_consulta' id=agendamento.id %}">Cancelar</a></td>
+						</tr>
+					{% endif %}	
+				{% endfor %}
 				</tbody>
 			  </table>
-
 			</div>
 		  </div>
 		</div>
