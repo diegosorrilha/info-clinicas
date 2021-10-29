@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand, CommandError
 
+from info_clinicas.agendamento.models import Agendamento
 from info_clinicas.clinicas.models import Clinica
 from info_clinicas.especialidade.models import Especialidade
 from info_clinicas.medicos.models import Medicos, Disponibilidade
@@ -301,9 +302,35 @@ class Command(BaseCommand):
         )
 
     def criar_agendamentos(self):
-        self.stdout.write(
-            self.style.SUCCESS(f'agendamentos criados com sucesso!')
-        )
+        clinica_teste = Clinica.objects.get(nome='Clinica Teste')
+
+        medicos_pacientes = [
+            {
+                'medico': Medicos.objects.get(nome_completo='Dr Alfredo'),
+                'paciente': Paciente.objects.get(nome_completo='João Roberto da Silva')
+            },
+            {
+                'medico': Medicos.objects.get(nome_completo='Dr Bernardo'),
+                'paciente': Paciente.objects.get(nome_completo='Ana Cristina Soares')
+            },
+        ]
+
+        for m_p in medicos_pacientes:
+            disponibilidade = Disponibilidade.objects.get(medico=m_p['medico'], disponivel=True)
+
+            agendamento = Agendamento(
+                status='Agendado',
+                agendado_para=disponibilidade,
+                medico=m_p['medico'],
+                paciente=m_p['paciente'],
+                clinica=clinica_teste,
+            )
+
+            agendamento.save()
+
+            self.stdout.write(
+                self.style.SUCCESS(f'Agendamento: "{agendamento.agendado_para} - {agendamento.medico.nome_completo} - {agendamento.paciente.nome_completo}" criado com sucesso! ID: {agendamento.id}')
+            )
 
     def handle(self, *args, **options):
         self.criar_admin()
