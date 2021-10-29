@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 from info_clinicas.clinicas.models import Clinica
 from info_clinicas.especialidade.models import Especialidade
+from info_clinicas.medicos.models import Medicos
 
 
 class Command(BaseCommand):
@@ -14,7 +15,7 @@ class Command(BaseCommand):
         User.objects.create_superuser('admin', 'admin@madmin.com', 'admin')
 
         self.stdout.write(
-            self.style.SUCCESS(f'usuário admin criado com sucesso! admin:admin')
+            self.style.SUCCESS(f'Usuário admin criado com sucesso! admin:admin')
         )
 
     def criar_especialidades(self):
@@ -72,13 +73,65 @@ class Command(BaseCommand):
         nova_clinica.save()
 
         self.stdout.write(
-            self.style.SUCCESS(f'{nova_clinica.nome} criada com sucesso! ID: {nova_clinica.id}')
+            self.style.SUCCESS(f'Clínica {nova_clinica.nome} criada com sucesso! ID: {nova_clinica.id}')
         )
+
     def criar_medicos(self):
-        # pegar primeira clinica cadastrada
-        self.stdout.write(
-            self.style.SUCCESS(f'medicos criados com sucesso!')
-        )
+        clinica_teste = Clinica.objects.get(nome='Clinica Teste')
+
+        medicos = [
+            {
+                'nome_completo': 'Dr Alfredo',
+                'sexo': 'Masculino',
+                'cpf': '11122233344',
+                'email': 'alfredo@gmail.com',
+                'data_nascimento': '',
+                'telefone': '5511988887744',
+                'endereco': 'Rua das flores, 47',
+                'bairro': 'Jardim da saudade',
+                'cidade': 'São Paulo',
+                'pais': 'Brasil',
+                'CEP': '07456-000',
+                'CRM': '1234567',
+            },
+            {
+                'nome_completo': 'Dr Bernardo',
+                'sexo': 'Masculino',
+                'cpf': '11122233344',
+                'email': 'bernardo@gmail.com',
+                'data_nascimento': '',
+                'telefone': '5511988887744',
+                'endereco': 'Rua da justiça, 74',
+                'bairro': 'Jardim Europa',
+                'cidade': 'São Bernardo do Campo',
+                'pais': 'Brasil',
+                'CEP': '07456-000',
+                'CRM': '1234567',
+            },
+        ]
+
+        for m in medicos:
+            medico = Medicos(
+                nome_completo=m['nome_completo'],
+                sexo=m['sexo'],
+                cpf=m['cpf'],
+                email=m['email'],
+                data_nascimento='1980-10-01',
+                telefone=m['telefone'],
+                endereco=m['endereco'],
+                bairro=m['bairro'],
+                cidade=m['cidade'],
+                pais=m['pais'],
+                CEP=m['CEP'],
+                CRM=m['CRM'],
+                clinica=clinica_teste
+            )
+
+            medico.save()
+
+            self.stdout.write(
+                self.style.SUCCESS(f'Médico {medico.nome_completo} criado com sucesso! ID: {medico.id}')
+            )
 
     def criar_pacientes(self):
         # pegar primeira clinica cadastrada
