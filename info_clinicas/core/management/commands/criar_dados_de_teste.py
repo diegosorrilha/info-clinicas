@@ -316,7 +316,7 @@ class Command(BaseCommand):
         ]
 
         for m_p in medicos_pacientes:
-            disponibilidade = Disponibilidade.objects.get(medico=m_p['medico'], disponivel=True)
+            disponibilidade = Disponibilidade.objects.get(medico=m_p['medico'], disponivel=False)
 
             agendamento = Agendamento(
                 status='Agendado',
