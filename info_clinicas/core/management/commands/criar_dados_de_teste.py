@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 from info_clinicas.clinicas.models import Clinica
 from info_clinicas.especialidade.models import Especialidade
-from info_clinicas.medicos.models import Medicos
+from info_clinicas.medicos.models import Medicos, Disponibilidade
 from info_clinicas.pacientes.models import Paciente
 
 
@@ -95,14 +95,14 @@ class Command(BaseCommand):
 
         if clinica_teste:
             self.stdout.write(
-                self.style.ERROR(f'Clinica {clinica_teste.nome} já cadastrada. ID: {clinica_teste.id}')
+                self.style.ERROR(f'Clinica: "{clinica_teste.nome}" já cadastrada. ID: {clinica_teste.id}')
             )
 
         else:
             nova_clinica.save()
 
             self.stdout.write(
-                self.style.SUCCESS(f'Clínica {nova_clinica.nome} criada com sucesso! ID: {nova_clinica.id}')
+                self.style.SUCCESS(f'Clínica: "{nova_clinica.nome}" criada com sucesso! ID: {nova_clinica.id}')
             )
 
     def criar_medicos(self):
@@ -147,7 +147,7 @@ class Command(BaseCommand):
 
             if medico_teste:
                 self.stdout.write(
-                    self.style.ERROR(f'Médico "{medico_teste.nome_completo}" já cadastrado. ID: {medico_teste.id}')
+                    self.style.ERROR(f'Médico: "{medico_teste.nome_completo}" já cadastrado. ID: {medico_teste.id}')
                 )
                 continue
 
@@ -170,21 +170,10 @@ class Command(BaseCommand):
             medico.save()
 
             self.stdout.write(
-                self.style.SUCCESS(f'Médico {medico.nome_completo} criado com sucesso! ID: {medico.id}')
+                self.style.SUCCESS(f'Médico: "{medico.nome_completo}" criado com sucesso! ID: {medico.id}')
             )
 
     def criar_pacientes(self):
-        '''
-        nome_completo = 'João Roberto da Silva'
-        sexo = 'Masculino'
-        data_nascimento = '1985-01-01'
-        telefone = '5511985554477'
-        endereço = 'Rua Noel Rosa, 13'
-        cidade = 'Guarulhos'
-        estado = 'São Paulo'
-        email = 'joaozim@gmail.com'
-        '''
-
         clinica_teste = Clinica.objects.get(nome='Clinica Teste')
 
         pacientes = [
@@ -219,7 +208,7 @@ class Command(BaseCommand):
 
             if paciente_teste:
                 self.stdout.write(
-                    self.style.ERROR(f'Paciente "{paciente_teste.nome_completo}" já cadastrado. ID: {paciente_teste.id}')
+                    self.style.ERROR(f'Paciente: "{paciente_teste.nome_completo}" já cadastrado. ID: {paciente_teste.id}')
                 )
                 continue
 
@@ -238,12 +227,77 @@ class Command(BaseCommand):
             paciente.save()
 
             self.stdout.write(
-                self.style.SUCCESS(f'Paciente {paciente.nome_completo} criado com sucesso! ID: {paciente.id}')
+                self.style.SUCCESS(f'Paciente: "{paciente.nome_completo}" criado com sucesso! ID: {paciente.id}')
             )
 
     def criar_disponibilidades(self):
+        '''
+            class Disponibilidade(models.Model):
+
+            disponivel = models.BooleanField(default=True)
+            medico = models.ForeignKey(Medicos, on_delete=models.PROTECT)
+            data = models.DateField(verbose_name="Data disponível", auto_now=False, auto_now_add=False)
+            hora = models.TimeField(verbose_name="Horário disponível", auto_now=False, auto_now_add=False)
+            clinica = models.ForeignKey(Clinica, on_delete=models.CASCADE, blank=True, null=False)
+        '''
+        clinica_teste = Clinica.objects.get(nome='Clinica Teste')
+        medico_1_teste = Medicos.objects.get(nome_completo='Dr Alfredo')
+        medico_2_teste = Medicos.objects.get(nome_completo='Dr Bernardo')
+
+        disp_medico1 = Disponibilidade(
+            disponivel=True,
+            medico=medico_1_teste,
+            data='2021-12-24',
+            hora='12:30',
+            clinica=clinica_teste
+        )
+
+        disp_medico1.save()
+
         self.stdout.write(
-            self.style.SUCCESS(f'disponibilidades criadas com sucesso!')
+            self.style.SUCCESS(f'Disponibilidade: "{disp_medico1.data} - {disp_medico1.medico.nome_completo}" criada com sucesso! ID: {disp_medico1.id}')
+        )
+
+        disp_medico1 = Disponibilidade(
+            disponivel=False,
+            medico=medico_1_teste,
+            data='2021-12-25',
+            hora='12:30',
+            clinica=clinica_teste
+        )
+
+        disp_medico1.save()
+
+        self.stdout.write(
+            self.style.SUCCESS(f'Disponibilidade: "{disp_medico1.data} - {disp_medico1.medico.nome_completo}" criada com sucesso! ID: {disp_medico1.id}')
+        )
+
+        disp_medico2 = Disponibilidade(
+            disponivel=True,
+            medico=medico_2_teste,
+            data='2021-12-24',
+            hora='12:30',
+            clinica=clinica_teste
+        )
+
+        disp_medico2.save()
+
+        self.stdout.write(
+            self.style.SUCCESS(f'Disponibilidade: "{disp_medico2.data} - {disp_medico2.medico.nome_completo}" criada com sucesso! ID: {disp_medico2.id}')
+        )
+
+        disp_medico2 = Disponibilidade(
+            disponivel=False,
+            medico=medico_2_teste,
+            data='2021-12-25',
+            hora='12:30',
+            clinica=clinica_teste
+        )
+
+        disp_medico2.save()
+
+        self.stdout.write(
+            self.style.SUCCESS(f'Disponibilidade: "{disp_medico2.data} - {disp_medico2.medico.nome_completo}" criada com sucesso! ID: {disp_medico2.id}')
         )
 
     def criar_agendamentos(self):
