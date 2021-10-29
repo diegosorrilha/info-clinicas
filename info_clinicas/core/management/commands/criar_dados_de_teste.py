@@ -11,12 +11,22 @@ class Command(BaseCommand):
 
     def criar_admin(self):
         User = get_user_model()
+        try:
+            user_admin = User.objects.get(username='admin')
+        except User.DoesNotExist:
+            user_admin = None
 
-        User.objects.create_superuser('admin', 'admin@madmin.com', 'admin')
+        if user_admin:
+            self.stdout.write(
+                self.style.ERROR(f'Usuário: {user_admin.username} já cadastrado. ID: {user_admin.id}')
+            )
 
-        self.stdout.write(
-            self.style.SUCCESS(f'Usuário admin criado com sucesso! admin:admin')
-        )
+        else:
+            User.objects.create_superuser('admin', 'admin@madmin.com', 'admin')
+
+            self.stdout.write(
+                self.style.SUCCESS(f'Usuário: admin criado com sucesso! admin:admin')
+            )
 
     def criar_especialidades(self):
         lista = ['Acupuntura', 'Alergia e Imunologia', 'Anestesiologia', 'Angiologia', 'Cancerologia', 'Cardiologia',
@@ -34,12 +44,27 @@ class Command(BaseCommand):
                  'Urologia']
 
         for i in lista:
+            try:
+                especialidade_teste = Especialidade.objects.get(nome_especialidade=i)
+            except Especialidade.DoesNotExist:
+                especialidade_teste = None
+
+            if especialidade_teste:
+                self.stdout.write(
+                    self.style.ERROR(f'Especialidade: "{especialidade_teste.nome_especialidade}" já cadastrada. '
+                                     f'ID: {especialidade_teste.id}'
+                                     )
+                )
+                continue
+
             especialidade = Especialidade(nome_especialidade=i)
             especialidade.save()
 
-        self.stdout.write(
-            self.style.SUCCESS(f'Especialidades criadas com sucesso!')
-        )
+            self.stdout.write(
+                self.style.SUCCESS(f'Especialidade: "{especialidade.nome_especialidade}" cadastrada com sucesso. '
+                                   f'ID: {especialidade.id}'
+                                   )
+            )
 
     def criar_clinica(self):
         nome = 'Clinica Teste'
@@ -68,13 +93,16 @@ class Command(BaseCommand):
             clinica_teste = None
 
         if clinica_teste:
-            raise CommandError(f'Clinica já cadastrada. ID: {clinica_teste.id}')
+            self.stdout.write(
+                self.style.ERROR(f'Clinica {clinica_teste.nome} já cadastrada. ID: {clinica_teste.id}')
+            )
 
-        nova_clinica.save()
+        else:
+            nova_clinica.save()
 
-        self.stdout.write(
-            self.style.SUCCESS(f'Clínica {nova_clinica.nome} criada com sucesso! ID: {nova_clinica.id}')
-        )
+            self.stdout.write(
+                self.style.SUCCESS(f'Clínica {nova_clinica.nome} criada com sucesso! ID: {nova_clinica.id}')
+            )
 
     def criar_medicos(self):
         clinica_teste = Clinica.objects.get(nome='Clinica Teste')
@@ -111,6 +139,17 @@ class Command(BaseCommand):
         ]
 
         for m in medicos:
+            try:
+                medico_teste = Medicos.objects.get(nome_completo=m['nome_completo'])
+            except Medicos.DoesNotExist:
+                medico_teste = None
+
+            if medico_teste:
+                self.stdout.write(
+                    self.style.ERROR(f'Médico "{medico_teste.nome_completo}" já cadastrado. ID: {medico_teste.id}')
+                )
+                continue
+
             medico = Medicos(
                 nome_completo=m['nome_completo'],
                 sexo=m['sexo'],
