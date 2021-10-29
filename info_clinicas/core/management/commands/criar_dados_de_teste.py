@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand, CommandError
 
 from info_clinicas.especialidade.models import Especialidade
@@ -5,6 +6,15 @@ from info_clinicas.especialidade.models import Especialidade
 
 class Command(BaseCommand):
     help = 'Comando que popula o banco com dados de teste'
+
+    def criar_admin(self):
+        User = get_user_model()
+
+        User.objects.create_superuser('admin', 'admin@madmin.com', 'admin')
+
+        self.stdout.write(
+            self.style.SUCCESS(f'usuário admin criado com sucesso! admin:admin')
+        )
 
     def criar_especialidades(self):
         lista = ['Acupuntura', 'Alergia e Imunologia', 'Anestesiologia', 'Angiologia', 'Cancerologia', 'Cardiologia',
@@ -53,6 +63,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        self.criar_admin()
         self.criar_especialidades()
         self.criar_clinica()
         self.criar_medicos()
