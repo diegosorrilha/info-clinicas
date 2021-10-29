@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand, CommandError
 from info_clinicas.clinicas.models import Clinica
 from info_clinicas.especialidade.models import Especialidade
 from info_clinicas.medicos.models import Medicos
+from info_clinicas.pacientes.models import Paciente
 
 
 class Command(BaseCommand):
@@ -173,10 +174,72 @@ class Command(BaseCommand):
             )
 
     def criar_pacientes(self):
-        # pegar primeira clinica cadastrada
-        self.stdout.write(
-            self.style.SUCCESS(f'pacientes criados com sucesso!')
-        )
+        '''
+        nome_completo = 'João Roberto da Silva'
+        sexo = 'Masculino'
+        data_nascimento = '1985-01-01'
+        telefone = '5511985554477'
+        endereço = 'Rua Noel Rosa, 13'
+        cidade = 'Guarulhos'
+        estado = 'São Paulo'
+        email = 'joaozim@gmail.com'
+        '''
+
+        clinica_teste = Clinica.objects.get(nome='Clinica Teste')
+
+        pacientes = [
+            {
+                'nome_completo': 'João Roberto da Silva',
+                'sexo': 'Masculino',
+                'data_nascimento': '1985-01-01',
+                'telefone': '5511985554477',
+                'endereço': 'Rua Noel Rosa, 13',
+                'cidade': 'Guarulhos',
+                'estado': 'São Paulo',
+                'email': 'joaozim@gmail.com',
+            },
+            {
+                'nome_completo': 'Ana Cristina Soares',
+                'sexo': 'Feminino',
+                'data_nascimento': '1988-09-15',
+                'telefone': '5511985557788',
+                'endereço': 'Rua Huberto Porto, 55',
+                'cidade': 'Guarulhos',
+                'estado': 'São Paulo',
+                'email': 'acristina@gmail.com',
+            },
+
+        ]
+
+        for p in pacientes:
+            try:
+                paciente_teste = Paciente.objects.get(nome_completo=p['nome_completo'])
+            except Paciente.DoesNotExist:
+                paciente_teste = None
+
+            if paciente_teste:
+                self.stdout.write(
+                    self.style.ERROR(f'Paciente "{paciente_teste.nome_completo}" já cadastrado. ID: {paciente_teste.id}')
+                )
+                continue
+
+            paciente = Paciente(
+                nome_completo=p['nome_completo'],
+                sexo=p['sexo'],
+                data_nascimento='1980-10-01',
+                telefone=p['telefone'],
+                endereço=p['endereço'],
+                cidade=p['cidade'],
+                estado=p['estado'],
+                email=p['email'],
+                clinica=clinica_teste
+            )
+
+            paciente.save()
+
+            self.stdout.write(
+                self.style.SUCCESS(f'Paciente {paciente.nome_completo} criado com sucesso! ID: {paciente.id}')
+            )
 
     def criar_disponibilidades(self):
         self.stdout.write(
