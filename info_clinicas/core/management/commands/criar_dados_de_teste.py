@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand, CommandError
 
+from info_clinicas.clinicas.models import Clinica
 from info_clinicas.especialidade.models import Especialidade
 
 
@@ -35,11 +36,44 @@ class Command(BaseCommand):
             especialidade = Especialidade(nome_especialidade=i)
             especialidade.save()
 
-    def criar_clinica(self):
         self.stdout.write(
-            self.style.SUCCESS(f'clinica criada com sucesso!')
+            self.style.SUCCESS(f'Especialidades criadas com sucesso!')
         )
 
+    def criar_clinica(self):
+        nome = 'Clinica Teste'
+        cnpj = '0000000000'
+        site = 'clinicateste.com'
+        endereco = 'Rua x, 47'
+        cidade = 'São Paulo'
+        estado = 'SP'
+        telefone = '(11) 2222-4433'
+        responsavel = 'Fulaninho'
+
+        nova_clinica = Clinica(
+            nome=nome,
+            cnpj=cnpj,
+            site=site,
+            endereco=endereco,
+            cidade=cidade,
+            estado=estado,
+            telefone=telefone,
+            responsavel=responsavel,
+        )
+
+        try:
+            clinica_teste = Clinica.objects.get(nome=nome)
+        except Clinica.DoesNotExist:
+            clinica_teste = None
+
+        if clinica_teste:
+            raise CommandError(f'Clinica já cadastrada. ID: {clinica_teste.id}')
+
+        nova_clinica.save()
+
+        self.stdout.write(
+            self.style.SUCCESS(f'{nova_clinica.nome} criada com sucesso! ID: {nova_clinica.id}')
+        )
     def criar_medicos(self):
         # pegar primeira clinica cadastrada
         self.stdout.write(
