@@ -59,3 +59,6 @@ class Agendamento(models.Model):
             
             else:
                 return (f"e {only_minuto} minutos")
+
+    def __str__(self):
+        return f'{self.id} - {self.agendado_para.data}-{self.agendado_para.hora} - {self.medico.nome_completo} - {self.paciente.nome_completo}'

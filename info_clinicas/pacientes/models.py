@@ -64,4 +64,5 @@ class Paciente(models.Model):
         db_table = "paciente"
     
     def __str__(self):
-        return self.nome_completo
+        return f'{self.id} - {self.nome_completo}'
+

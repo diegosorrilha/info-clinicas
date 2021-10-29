@@ -31,7 +31,8 @@ class Medicos(models.Model):
         db_table = "medicos"
 
     def __str__(self):
-        return self.nome_completo
+        return f'{self.id} - {self.nome_completo}'
+
 
 class Disponibilidade(models.Model):
     
@@ -46,6 +47,8 @@ class Disponibilidade(models.Model):
         verbose_name_plural = "Disponibilidades"
         db_table = "disponibilidade"
 
+    def __str__(self):
+        return f'{self.id} - {self.data}-{self.hora} - {self.medico.nome_completo}'
 
 
 

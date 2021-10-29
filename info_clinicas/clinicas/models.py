@@ -48,4 +48,4 @@ class Clinica(models.Model):
         db_table = 'clinica'
 
     def __str__(self):
-        return self.nome
+        return f'{self.id} - {self.nome}'
