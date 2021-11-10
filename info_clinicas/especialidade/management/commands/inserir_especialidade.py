@@ -14,3 +14,5 @@ class Command(BaseCommand):
         for i in lista:
             especialidade = Especialidade(nome_especialidade=i)
             especialidade.save()
+
+# para executar: python manage.py inserir_especialidade

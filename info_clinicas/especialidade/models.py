@@ -15,4 +15,8 @@ class Especialidade(models.Model):
     )
 
     def __str__(self):
+<<<<<<< Updated upstream
         return self.nome_especialidade
+=======
+        return f'{self.id} - {self.nome_especialidade}'
+>>>>>>> Stashed changes
