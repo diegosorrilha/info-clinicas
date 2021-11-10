@@ -1,4 +1,8 @@
 from django.db import models
+from django.db.models.base import Model
+from django.utils.translation import ugettext as _
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 
 
 class Operador(models.Model):

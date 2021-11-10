@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from info_clinicas.criar_operador.models import Operador
+from django.contrib.auth.models import User
+from django.views.decorators.http import require_POST
 
 
 def criar_operador(request):
@@ -28,7 +30,4 @@ def criar_operador(request):
         )
 
         criar.save()
-
-        # return redirect("criar_operador")
-
     return render(request, 'criar_operador.html')
